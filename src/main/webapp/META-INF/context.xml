@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
 	<Resource
-		name="sqlserver"
+		name="sqlserverThomas"
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		type="javax.sql.DataSource"
 		
@@ -29,7 +29,7 @@
 	/>	
 	
 	<Resource
-		name="sqlserver"
+		name="sqlserverSidney"
 		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
 		type="javax.sql.DataSource"
 		
