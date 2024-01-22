@@ -1,24 +1,28 @@
 package dal;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 public class ConnectionProvider {
 	
-	public static Connection getConnection(){
-		// modifier l'utilisateur, le mot de passe et le nom de la database pour se connecter
-		String dbName = System.getenv("DATABASE_NAME"); 
-		String url = "jdbc:sqlserver://localhost;databasename=" + dbName + ";trustservercertificate=true";
+	public static Connection getConnection() {
+		try {
+			Context context = new InitialContext();
+			DataSource dataSource = (DataSource) context.lookup("java:comp/env/" + System.getenv("CONTEXT_NAME"));
+		return dataSource.getConnection();
 		
-			try {
-				return DriverManager.getConnection(url, System.getenv("USER_SQLSERVER"), System.getenv("PASSWORD_SQLSERVER"));
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return null;
-		
+		} catch (NamingException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} return null;
 
-}
+
+} 
 }
