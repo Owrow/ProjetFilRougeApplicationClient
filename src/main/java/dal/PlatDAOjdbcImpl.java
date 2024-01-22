@@ -12,7 +12,7 @@ import bo.Plat;
 
 public class PlatDAOjdbcImpl implements GenericDAO<Plat> {
 
-	private static final String TABLE_NAME = "clients";
+	private static final String TABLE_NAME = "plats";
 
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
