@@ -19,4 +19,14 @@
     <servlet-name>ServletAccueil</servlet-name>
     <url-pattern>/ServletAccueil</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletInscription</display-name>
+    <servlet-name>ServletInscription</servlet-name>
+    <servlet-class>controller.servlet.ServletInscription</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletInscription</servlet-name>
+    <url-pattern>/ServletInscription</url-pattern>
+  </servlet-mapping>
 </web-app>
