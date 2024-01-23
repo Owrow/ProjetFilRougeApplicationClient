@@ -17,7 +17,7 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
 			+ " SET libelle = ? WHERE id = ?";
-	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (libelle) VALUES (?)";
+	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (type_role) VALUES (?)";
 	private static final String SELECT_BY_ID = "SELECT * FROM "	+ TABLE_NAME + "  WHERE id = ?";
 
 	private static final String SELECT = "SELECT * FROM "+ TABLE_NAME;

@@ -6,7 +6,6 @@ import bo.Client;
 import dal.ClientDAOjdbcImpl;
 import dal.DALException;
 import dal.GenericDAO;
-import dal.RoleDAOjdbcImpl;
 
 public class ClientBLL {
 		private GenericDAO<Client> dao;
@@ -35,9 +34,9 @@ public class ClientBLL {
 			}
 		}
 		
-		public void insert(String nom, String prenom,String mail,String telephone,String mdp) throws BLLException {
-			BLLException blleException = new BLLException();
-			Client client = new Client( nom,  prenom, mail, telephone, mdp, 0);
+		public void insert(String nom, String prenom,String mail,String telephone,String mdp, int role) throws BLLException {
+			
+			Client client = new Client( nom,  prenom, mail, telephone, mdp, role);
 
 			try {
 				ClientDAOjdbcImpl clientDao = new ClientDAOjdbcImpl();
@@ -46,11 +45,11 @@ public class ClientBLL {
 			} catch (DALException e) {
 				throw new BLLException("Echec de l'insertion", e);
 			}
-
+			
 		}
 		
 		public void update(Client client) throws BLLException {
-			BLLException blleException = new BLLException();
+			
 			
 			try {
 				dao.update(client);
