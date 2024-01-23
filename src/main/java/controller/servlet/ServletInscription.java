@@ -19,6 +19,7 @@ public class ServletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Client clientSignIn;
 	private ClientBLL clientBll;
+	private Role role;
 	private RoleBLL roleBll;
 	
 	
@@ -28,8 +29,10 @@ public class ServletInscription extends HttpServlet {
 		
 		try {
 			clientBll = new ClientBLL();
-			roleBll = new RoleBLL();
+			role = new Role();
 			clientSignIn = new Client();
+			roleBll = new RoleBLL();
+			
 			
 		} catch (BLLException e) {
 			e.printStackTrace();
@@ -50,22 +53,33 @@ public class ServletInscription extends HttpServlet {
 		
 //		System.out.println(name);
 //		System.out.println(firstName);
-		System.out.println(mailSignIn);
+//		System.out.println(mailSignIn);
 //		System.out.println(telSignIn);
 //		System.out.println(passSignIn);
 //		System.out.println(confirPassSignIn);
 		
 		
-
+		Role roleUser;
+		try {
+			roleUser = roleBll.selectById(1);
+			System.out.println(roleUser);
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println(role.getId());
+		
 		if (passSignIn != null && passSignIn.equals(confirPassSignIn)) {
 		    // Les mots de passe correspondent, continuez le traitement (par exemple, enregistrement dans la base de données)
 			try {
 				
 				String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
 				
-				Role roleUser  = roleBll.insert("USER");
+		
 				
-				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, roleUser.getId());
+			clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, role.getId());
 				
 			} catch (BLLException e) {
 				

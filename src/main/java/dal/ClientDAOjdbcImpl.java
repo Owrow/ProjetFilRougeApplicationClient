@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.Client;
-import bo.Role;
 
 public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
@@ -17,7 +16,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
 			+ " SET nom = ?, prenom = ?, telephone = ?, mail = ?, mdp = ? WHERE id = ?";
-	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nom, prenom, telephone, mail, mdp, id_role) VALUES (?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nom, prenom, telephone, mail, mdp, type_role) VALUES (?,?,?,?,?,?)";
 	private static final String SELECT_BY_ID = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c WHERE c.id = ?";
 

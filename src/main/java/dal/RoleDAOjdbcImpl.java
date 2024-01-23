@@ -51,7 +51,8 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 		Role role = null;
 		PreparedStatement ps;
 		try {
-			ps = cnx.prepareStatement(SELECT_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
+			ps = cnx.prepareStatement(SELECT_BY_ID);
+			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				role = new Role();
@@ -60,10 +61,9 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 		} catch (SQLException e) {
 			throw new DALException("Impossible de recuperer les informations du role de l'id", e);
 		}
-
+ 
 		return role;
 	}
-
 	public void insert(Role plat) throws DALException {
 		try {
 
