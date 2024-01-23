@@ -9,7 +9,7 @@
 <body>
 <ul class="navbar">
     <li><a href="#accueil">Accueil</a></li>
-     <li><a href="#profil">Mon profil</a></li>
+     <li><a href="myAccount">Mon profil</a></li>
     <li><a href="#connexion">Connexion</a></li>
 </ul>
 
