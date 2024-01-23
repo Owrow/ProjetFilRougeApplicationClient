@@ -1,7 +1,6 @@
 package controller.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import bll.BLLException;
 import bll.RestaurantBLL;
@@ -11,10 +10,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class ServletAccueil extends HttpServlet {
+public class ServletDetailResto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private RestaurantBLL restaurantBll;
-  
+	
 	@Override
 	public void init() throws ServletException {
 		super.init();
@@ -23,25 +22,24 @@ public class ServletAccueil extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	}   
+  
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String idResto = request.getParameter("id");
+		
+		int id = Integer.parseInt(idResto);
+		
+		Restaurant restaurant = null;
 		try {
-			List<Restaurant> restaurants = restaurantBll.selectAll();
-			request.setAttribute("restaurants", restaurants);
+			restaurant = restaurantBll.selectById(id);
 		} catch (BLLException e) {
+			
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/WEB-INF/jsp/public/accueil.jsp").forward(request, response);
+		request.setAttribute("restaurant", restaurant);
+		request.getRequestDispatcher("/WEB-INF/jsp/public/detailResto.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }
-
