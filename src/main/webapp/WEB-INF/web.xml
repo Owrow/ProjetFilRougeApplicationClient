@@ -17,6 +17,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ServletAccueil</servlet-name>
-    <url-pattern>/ServletAccueil</url-pattern>
+    <url-pattern>/accueil</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDetailResto</display-name>
+    <servlet-name>ServletDetailResto</servlet-name>
+    <servlet-class>controller.servlet.ServletDetailResto</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDetailResto</servlet-name>
+    <url-pattern>/detailResto</url-pattern>
   </servlet-mapping>
 </web-app>
