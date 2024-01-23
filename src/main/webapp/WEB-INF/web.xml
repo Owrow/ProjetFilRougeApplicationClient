@@ -29,4 +29,34 @@
     <servlet-name>ServletDetailResto</servlet-name>
     <url-pattern>/detailResto</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletMyAccount</display-name>
+    <servlet-name>ServletMyAccount</servlet-name>
+    <servlet-class>controller.servlet.ServletMyAccount</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletMyAccount</servlet-name>
+    <url-pattern>/myAccount</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletDeleteProfile</display-name>
+    <servlet-name>ServletDeleteProfile</servlet-name>
+    <servlet-class>controller.servlet.ServletDeleteProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletDeleteProfile</servlet-name>
+    <url-pattern>/deleteProfile</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletUpdateProfile</display-name>
+    <servlet-name>ServletUpdateProfile</servlet-name>
+    <servlet-class>controller.servlet.ServletUpdateProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletUpdateProfile</servlet-name>
+    <url-pattern>/updateProfile</url-pattern>
+  </servlet-mapping>
 </web-app>
