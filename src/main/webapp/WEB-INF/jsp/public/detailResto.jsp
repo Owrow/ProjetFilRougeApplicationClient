@@ -7,6 +7,7 @@
 <title>PATE D'OR</title>
 </head>
 <body>
+<%@ include file="../../fragments/navbar.jspf"%>
 <h1>${restaurant.nom }</h1>
 <p>${restaurant.adresse }</p>
 
