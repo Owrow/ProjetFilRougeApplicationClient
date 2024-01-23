@@ -34,7 +34,7 @@ public class RoleBLL {
 			}
 		}
 		
-		public void insert(String libelle) throws BLLException {
+		public Role insert(String libelle) throws BLLException {
 			BLLException blleException = new BLLException();
 			Role role = new Role(libelle);
 
@@ -45,6 +45,7 @@ public class RoleBLL {
 			} catch (DALException e) {
 				throw new BLLException("Echec de l'insertion", e);
 			}
+			return role;
 
 		}
 		
