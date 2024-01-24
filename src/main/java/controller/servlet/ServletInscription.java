@@ -54,8 +54,13 @@ public class ServletInscription extends HttpServlet {
 		if (passSignIn != null && passSignIn.equals(confirPassSignIn)) {
 
 			try {
+
 			
+			
+
+//				String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
 				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
+
 				System.out.println("Client Ajouter");
 				response.sendRedirect("accueil");
 				return;

@@ -2,8 +2,6 @@ package dal;
 
 import java.util.List;
 
-import bo.Client;
-
 public interface GenericDAO<T> {
 	
 	List<T> selectAll() throws DALException;
