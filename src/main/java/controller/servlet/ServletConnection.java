@@ -63,16 +63,14 @@ public class ServletConnection extends HttpServlet {
 
 			try {
 
-			String hashedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());
-			client = clientBll.getUserAndPassword(mail,hashedPassword);
-			System.out.println(client);
+			//String hashedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());
+			//client = clientBll.getUserAndPassword(mail,hashedPassword);
+			client = clientBll.getUserAndPassword(pass, mail);
 				
 				if (client != null){
 				System.out.println("la connection est active");
-					response.sendRedirect("accueil");
-					
-					
-					client = clientBll.getHashPassword(mail);
+			    response.sendRedirect("accueil");
+			client = clientBll.getHashPassword(mail);
 					
 					System.out.println(client);
 					 HttpSession session = request.getSession();
@@ -83,7 +81,7 @@ public class ServletConnection extends HttpServlet {
 					    session.setMaxInactiveInterval(30*60); 
 
 					   
-					    response.sendRedirect("accueil");
+					
 			} else {
 
 					System.out.println("La connexion n'a pas marché");
