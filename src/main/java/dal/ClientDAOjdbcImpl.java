@@ -25,7 +25,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
 	private static final String PASSWORD = "SELECT * FROM " + TABLE_NAME +" WHERE mdp = ? AND mail= ?";
 
-	private static final String HASH_PASSWORD = "SELECT mdp FROM " + TABLE_NAME +" WHERE mail= ?";
+	private static final String HASH_PASSWORD = "SELECT * FROM " + TABLE_NAME +" WHERE mail= ?";
 
 
 
@@ -159,22 +159,28 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
 	}
 
-	public String getHashPassword(String mail) {
-		String passwordHash = null;
+	public Client getHashPassword(String mail) {
+		Client client = null;
 		try {
 			PreparedStatement ps = cnx.prepareStatement(HASH_PASSWORD); 
 		      ps.setString(1, mail);
 	            
 	            try (ResultSet rs = ps.executeQuery()) {
 	                if (rs.next()) {
-	                    passwordHash = rs.getString("mdp");
+	                	client = new Client();
+	                	client.setId(rs.getInt("id"));
+	                	client.setNom(rs.getString("nom"));
+	    				client.setPrenom(rs.getString("prenom"));
+	    				client.setMail(rs.getString("mail"));
+	    				client.setTelephone(rs.getString("telephone"));
+	                    client.setMdp(rs.getString("mdp")); 
 	                }
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	          
 	        }
-	        return passwordHash;
+	        return client;
 	    }
 
 

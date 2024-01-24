@@ -2,8 +2,6 @@ package controller.servlet;
 
 import java.io.IOException;
 
-import org.mindrot.jbcrypt.BCrypt;
-
 import bll.BLLException;
 import bll.ClientBLL;
 import bo.Client;
@@ -11,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class ServletConnection extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,6 +43,9 @@ public class ServletConnection extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
+		
+		
 
 		String mail = request.getParameter("email");
 		String pass = request.getParameter("password");
@@ -59,18 +61,31 @@ public class ServletConnection extends HttpServlet {
 
 			try {
 
-				client = clientBll.getUserAndPassword(mail,pass);
-				System.out.println(client);
-				
-				if (client != null){
-					System.out.println("la connection est active");
+//				client = clientBll.getUserAndPassword(mail,pass);
+//				System.out.println(client);
+//				
+//				if (client != null){
+//					System.out.println("la connection est active");
+//					response.sendRedirect("accueil");
+					
+					
+					client = clientBll.getHashPassword(mail);
+					
+					System.out.println(client);
+					 HttpSession session = request.getSession();
+					    session.setAttribute("client", client); 
+					    
 
-					response.sendRedirect("accueil");
-				} else {
+					    
+					    session.setMaxInactiveInterval(30*60); 
 
-					System.out.println("La connexion n'a pas marché");
-					request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
-				}
+					   
+					    response.sendRedirect("accueil");
+//				} else {
+//
+//					System.out.println("La connexion n'a pas marché");
+//					request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+//				}
 
 			} catch (BLLException e) {
 

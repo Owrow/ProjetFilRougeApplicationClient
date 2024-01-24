@@ -80,23 +80,24 @@ public class ClientBLL {
 
 		}
 	
-	public boolean getHashPassword( String password ,String mail ) throws BLLException {
+	public Client getHashPassword( String mail ) throws BLLException {
 		
 			
 			try {
 				daoJdbcImpl = new ClientDAOjdbcImpl();
-				String hashPass = daoJdbcImpl.getHashPassword(mail);
-			     if (hashPass != null && BCrypt.checkpw(password, hashPass)) {
-			            return true;
-			        }
+				Client client = daoJdbcImpl.getHashPassword(mail);
+			    // if (hashPass != null && BCrypt.checkpw(password, hashPass)) {
+			          //  return true;
+			       // }
 			      
-			    
+				 return client; 
 			} catch (DALException e) {
 				
 				e.printStackTrace();
 			}
+			return null;
 			
-			  return false;   
+			   
 		   
 		
 	}
