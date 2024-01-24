@@ -9,8 +9,12 @@ import bll.BLLException;
 import bll.CarteBLL;
 import bll.CategorieBLL;
 import bll.PlatBLL;
+import bll.PlatCarteBLL;
 import bll.RestaurantBLL;
 import bll.TableBLL;
+import bo.Carte;
+import bo.Categorie;
+import bo.Plat;
 import bo.Restaurant;
 import bo.Table;
 
@@ -136,7 +140,7 @@ public class TestMenu {
 
 		for (Restaurant current : restaurants) {
 			System.out.println("******************");
-			System.out.println("       - Id à saisir pour modifier le restaurant : "+ current.getId());
+			System.out.println("       - Id restaurant : "+ current.getId());
 			System.out.println("       - Restaurant : "+ current.getNom());
 			System.out.println("       - Adresse : "+ current.getAdresse());
 			System.out.println("       - Horaire d'ouverture : " + current.getOuverture());
@@ -286,6 +290,15 @@ public class TestMenu {
 	}
 
 	private static void createCarte() { // A FAIRE
+		List<Restaurant> restaurants = null;
+		try {
+			restaurants = getListRestaurants();
+		} catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (!restaurants.isEmpty()) {
 		System.out.println("1. Saisie manuelle");
 		System.out.println("2. Saisie automatique");
 		System.out.println("3. Annuler");
@@ -307,11 +320,89 @@ public class TestMenu {
 		default:
 			System.out.println("Choix non valide. Veuillez réessayer.");
 		}
+
+	}
+		System.out.println("Veuillez d'abord ajouter un restaurant");
 	}
 
 	private static void createCarteManual() {// A FAIRE
+	
+	
+					
+		System.out.println("Vous avez choisi de créer la carte d'un restaurant");
+		System.out.println("Veuillez saisir le nom de la carte");
+		String nomCarte = scan.nextLine();
+		List<Plat> plats = new ArrayList<>();
 
-	}
+		boolean ajouterAutrePlat = true;
+
+		while (ajouterAutrePlat) {
+			System.out.println("Veuillez saisir le nom du plat");
+			String nomPlat = scan.nextLine();
+			System.out.println("Veuillez saisir le prix du plat");
+			float prixPlat = Float.parseFloat(scan.nextLine());
+			System.out.println("Veuillez décrire le plat");
+			String descriptionPlat = scan.nextLine();
+			System.out.println("Veuillez indiquer à quelle catégorie appartient ce plat");
+			System.out.println("1. Entrée");
+			System.out.println("2. Plat");
+			System.out.println("3. Dessert");
+			System.out.println("4. Boisson");
+			int categoriePlat = scan.nextInt();
+			scan.nextLine(); 
+
+			Categorie categorie = new Categorie();
+			categorie.setId(categoriePlat);
+
+			
+			
+
+			try {
+				PlatBLL platBll = new PlatBLL();
+				Plat plat =	platBll.insert(nomPlat, descriptionPlat, prixPlat, categorie);
+				plats.add(plat);
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			System.out.println("Souhaitez-vous ajouter un autre plat à cette carte O/N? ");
+			String res = scan.nextLine().trim();
+			ajouterAutrePlat = res.equalsIgnoreCase("O");
+			
+			
+			
+		}
+
+		try {
+			
+			CarteBLL carteBll = new CarteBLL();
+			Carte carte = carteBll.insert(nomCarte);
+			PlatCarteBLL platCarteBll = new PlatCarteBLL();
+			for (Plat current : plats) {
+				platCarteBll.insert(current,carte);
+			}
+			
+			boolean associerAutreRestaurant = true;
+
+			while (associerAutreRestaurant){
+
+				System.out.println("Saissisez l'id du restaurant auquel ajouter cette carte ?");
+				List<Restaurant> restaurants = null;
+				restaurants = getListRestaurants();
+				displayListResto(restaurants);
+				int idRestaurant = scan.nextInt();
+				scan.nextLine();
+				carteBll.insertCarteDansRestaurant(carte.getId(), idRestaurant);
+				System.out.println("Souhaitez-vous ajouter cette carte à un autre restaurant O/N? ");
+				String res = scan.nextLine().trim();
+				associerAutreRestaurant = res.equalsIgnoreCase("O");       	
+			}
+		}catch (BLLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
+
 
 	private static void createCarteAuto() {// A FAIRE SI LE TEMPS LE PERMET
 

@@ -72,6 +72,16 @@
 		<servlet-name>ServletInscription</servlet-name>
 		<url-pattern>/ServletInscription</url-pattern>
 	</servlet-mapping>
+	  <servlet>
+    <description></description>
+    <display-name>ServletTraitementReservation</display-name>
+    <servlet-name>ServletTraitementReservation</servlet-name>
+    <servlet-class>controller.servlet.ServletTraitementReservation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletTraitementReservation</servlet-name>
+    <url-pattern>/ServletTraitementReservation</url-pattern>
+  </servlet-mapping>
 	<servlet>
 		<description></description>
 		<display-name>ServletMessagerie</display-name>

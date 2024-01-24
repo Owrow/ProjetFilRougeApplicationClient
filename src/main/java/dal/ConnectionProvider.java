@@ -13,7 +13,6 @@ public class ConnectionProvider {
 	public static Connection getConnection() {
 		try {
 			Context context = new InitialContext();
-			System.out.println(System.getenv("CONTEXT_NAME"));
 			DataSource dataSource = (DataSource) context.lookup("java:comp/env/" + System.getenv("CONTEXT_NAME"));
 		return dataSource.getConnection();
 		

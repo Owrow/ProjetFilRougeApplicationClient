@@ -20,8 +20,8 @@ public class RestaurantDAOjdbcImpl implements GenericDAO<Restaurant> {
 			+ " SET nom = ?, adresse = ?, ouverture = ?, fermeture = ? WHERE id = ?";
 	private static final String INSERT = "INSERT INTO " + TABLE_NAME
 			+ " (nom, adresse, ouverture, fermeture) VALUES (?,?,?,?)";
-	private static final String SELECT_BY_ID = "SELECT r.id, r.nom, r.adresse, r.ouverture, r.fermeture FROM " + TABLE_NAME + " r WHERE id = ?";
-	private static final String SELECT = "SELECT r.id, r.nom, r.adresse, r.ouverture, r.fermeture FROM " + TABLE_NAME + " r";
+	private static final String SELECT_BY_ID = "SELECT r.id, r.nom, r.adresse, r.ouverture, r.fermeture, r.id_carte FROM " + TABLE_NAME + " r WHERE id = ?";
+	private static final String SELECT = "SELECT r.id, r.nom, r.adresse, r.ouverture, r.fermeture, r.id_carte FROM " + TABLE_NAME + " r";
 
 	private Connection cnx;
 	
@@ -43,7 +43,10 @@ public class RestaurantDAOjdbcImpl implements GenericDAO<Restaurant> {
 				restaurant.setAdresse(rs.getString("adresse"));
 				restaurant.setOuverture(rs.getTime("ouverture").toLocalTime());
 				restaurant.setFermeture(rs.getTime("fermeture").toLocalTime());
-
+				
+				Carte carte = new Carte();
+				carte.setId(rs.getInt("id_carte"));
+				restaurant.setCarte(carte);
 				restaurants.add(restaurant);
 			}
 		} catch (SQLException e) {
@@ -67,6 +70,10 @@ public class RestaurantDAOjdbcImpl implements GenericDAO<Restaurant> {
 				restaurant.setAdresse(rs.getString("adresse"));
 				restaurant.setOuverture(rs.getTime("ouverture").toLocalTime());
 				restaurant.setFermeture(rs.getTime("fermeture").toLocalTime());
+				
+				carte = new Carte();
+				carte.setId(rs.getInt("id_carte"));
+				restaurant.setCarte(carte);
 
 			}
 		} catch (SQLException e) {
