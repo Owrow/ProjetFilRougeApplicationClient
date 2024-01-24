@@ -2,7 +2,7 @@ package controller.servlet;
 
 import java.io.IOException;
 
-import org.mindrot.jbcrypt.BCrypt;
+
 
 import bll.BLLException;
 import bll.ClientBLL;
@@ -55,10 +55,14 @@ public class ServletInscription extends HttpServlet {
 
 			try {
 
+
 				//String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
 				//clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, 1);
 				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
+
 				System.out.println("Client Ajouter");
+				response.sendRedirect("accueil");
+				return;
 
 			} catch (BLLException e) {
 				e.printStackTrace();
@@ -66,7 +70,7 @@ public class ServletInscription extends HttpServlet {
 				} else {
 			
 					System.out.println("Les mots de passe ne correspondent pas, renvoyez l'erreur à l'utilisateur"); 
-
+					
 		}
 
 

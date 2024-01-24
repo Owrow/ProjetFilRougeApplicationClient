@@ -19,7 +19,6 @@ public class ServletConnection extends HttpServlet {
 	Client client;
 	ClientBLL clientBll;
 
-
 	@Override
 	public void init() throws ServletException {
 
@@ -37,21 +36,16 @@ public class ServletConnection extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String mail = request.getParameter("email");
 		String pass = request.getParameter("password");
-
 
 		if (mail == null || mail.isEmpty() || pass == null || pass.isEmpty()) {
 
@@ -60,8 +54,8 @@ public class ServletConnection extends HttpServlet {
 
 		} else {
 
-
 			try {
+
 
 			//String hashedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());
 			//client = clientBll.getUserAndPassword(mail,hashedPassword);
@@ -72,17 +66,14 @@ public class ServletConnection extends HttpServlet {
 			    response.sendRedirect("accueil");
 			client = clientBll.getHashPassword(mail);
 					
+
 					System.out.println(client);
-					 HttpSession session = request.getSession();
-					    session.setAttribute("client", client); 
-					    
+					HttpSession session = request.getSession();
+					session.setAttribute("client", client);
 
-					    
-					    session.setMaxInactiveInterval(30*60); 
+					session.setMaxInactiveInterval(30 * 60);
 
-					   
-					
-			} else {
+
 
 					System.out.println("La connexion n'a pas marché");
 					request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
@@ -93,16 +84,6 @@ public class ServletConnection extends HttpServlet {
 				e.printStackTrace();
 			}
 
-
 		}
 	}
 }
-
-
-
-
-
-
-
-
-

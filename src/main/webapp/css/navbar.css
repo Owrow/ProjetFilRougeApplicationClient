@@ -10,6 +10,11 @@
     text-align: right; 
 }
 
+.navbar li {
+    display: inline-block;
+}
+
+
 .navbar a {
     color: white;
     padding: 14px 16px; 
