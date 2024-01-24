@@ -2,8 +2,6 @@ package dal;
 
 import java.util.List;
 
-import bo.Client;
-
 public interface GenericDAO<T> {
 	
 	List<T> selectAll() throws DALException;
@@ -12,6 +10,6 @@ public interface GenericDAO<T> {
 	void update(T donnee) throws DALException;
 	void delete(int T) throws DALException;
 	
-	Client getPassword(String password, String mail) throws DALException;
+	
 
 }

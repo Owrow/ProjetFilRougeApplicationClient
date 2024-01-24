@@ -55,8 +55,8 @@ public class ServletInscription extends HttpServlet {
 
 			try {
 
-				//String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
-				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
+				String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
+				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, 1);
 				System.out.println("Client Ajouter");
 
 			} catch (BLLException e) {
@@ -68,7 +68,10 @@ public class ServletInscription extends HttpServlet {
 
 		}
 
+
 		request.getRequestDispatcher("/WEB-INF/jsp/public/PageInscription.jsp").forward(request, response);
+	
+		
 	}
 
 

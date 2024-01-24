@@ -82,4 +82,25 @@
     <servlet-name>ServletTraitementReservation</servlet-name>
     <url-pattern>/ServletTraitementReservation</url-pattern>
   </servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ServletMessagerie</display-name>
+		<servlet-name>ServletMessagerie</servlet-name>
+		<servlet-class>controller.servlet.ServletMessagerie</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletMessagerie</servlet-name>
+		<url-pattern>/messagerie</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<description></description>
+		<display-name>ServletConnection</display-name>
+		<servlet-name>ServletConnection</servlet-name>
+		<servlet-class>controller.servlet.ServletConnection</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ServletConnection</servlet-name>
+		<url-pattern>/ServletConnection</url-pattern>
+
+	</servlet-mapping>
 </web-app>

@@ -6,13 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
+<link rel="stylesheet" href="css/general.css" />
 <link rel="stylesheet" href="css/accueil.css" />
 </head>
 <body>
 	<%@ include file="../../fragments/navbar.jspf"%>
+
 	
-	<div class="container-restos">
+	<div class="container-accueil">
 		<c:forEach var="current" items='${restaurants }'>
+		<div class="resto-box">
 			<p>${current.nom }</p>
 			<p>${current.adresse }</p>
 						
@@ -25,8 +28,9 @@
 					<input type="hidden" name="id_restaurant" value='${current.id}' /> 
 					<input class="btnDetails" type="submit" value="Réserver" />
 				</form>
+				</div>
 		</c:forEach>
 	</div>
-
+<%@ include file="../../fragments/footer.jspf"%>
 </body>
 </html>
