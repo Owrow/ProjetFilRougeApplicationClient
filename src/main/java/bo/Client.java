@@ -1,7 +1,5 @@
 package bo;
 
-import java.util.List;
-
 public class Client {
 
 	private int id;

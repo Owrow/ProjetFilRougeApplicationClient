@@ -1,1 +1,10 @@
 @charset "UTF-8";
+
+.container-restos {
+	background-color: pink;
+}
+
+.picResto img{
+	width: 100px;
+	height: 100px;
+}

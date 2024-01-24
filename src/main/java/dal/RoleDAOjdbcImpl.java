@@ -17,7 +17,7 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
 			+ " SET libelle = ? WHERE id = ?";
-	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (libelle) VALUES (?)";
+	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (type_role) VALUES (?)";
 	private static final String SELECT_BY_ID = "SELECT * FROM "	+ TABLE_NAME + "  WHERE id = ?";
 
 	private static final String SELECT = "SELECT * FROM "+ TABLE_NAME;
@@ -53,7 +53,9 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 		PreparedStatement ps;
 		try {
 			ps = cnx.prepareStatement(SELECT_BY_ID);
+
 			ps.setInt(1, id); 
+
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				role = new Role();
@@ -63,10 +65,9 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 		} catch (SQLException e) {
 			throw new DALException("Impossible de recuperer les informations du role de l'id", e);
 		}
-
+ 
 		return role;
 	}
-
 	public void insert(Role plat) throws DALException {
 		try {
 

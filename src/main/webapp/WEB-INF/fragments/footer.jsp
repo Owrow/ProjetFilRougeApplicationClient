@@ -7,13 +7,12 @@
 <title>PATE D'OR</title>
 </head>
 <body>
-<ul class="navbar">
-    <li><a href="#accueil">Accueil</a></li>
-     <li><a href="myAccount">Mon profil</a></li>
-    <li><a href="#connexion">Connexion</a></li>
-</ul>
-
-
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Pâtes d'or. Tous droits réservés.</p>
+        
+    </div>
+</footer>
 
 </body>
 </html>
