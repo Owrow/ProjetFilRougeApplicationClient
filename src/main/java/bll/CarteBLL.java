@@ -46,7 +46,10 @@ public class CarteBLL {
 				blleException.ajouterErreur("Le nom doit faire maximum 30 caractères");
 			}
 			try {
+				carte.setNom(nom);
+				
 				dao.insert(carte);
+				
 			} catch (DALException e) {
 				throw new BLLException("Echec de l'insertion", e);
 			}
@@ -77,12 +80,12 @@ public class CarteBLL {
 			}
 		}
 		
-		public void insertCarteDansRestaurant(int id) throws BLLException {
+		public void insertCarteDansRestaurant(int idCarte, int idRestaurant) throws BLLException {
 			BLLException blleException = new BLLException();
 			
 			try {
 				CarteDAOJdbcImpl carteDao = new CarteDAOJdbcImpl();
-				carteDao.insertCarteDansRestaurant(id);
+				carteDao.insertCarteDansRestaurant(idCarte,idRestaurant);
 				
 			} catch (DALException e) {
 				throw new BLLException("Echec de l'insertion", e);

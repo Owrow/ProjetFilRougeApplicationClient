@@ -35,8 +35,9 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 			PreparedStatement ps = cnx.prepareStatement(SELECT);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				Role role = new Role();				
-				role.setLibelle("libelle");
+				Role role = new Role();		
+				role.setId(rs.getInt("id"));
+				role.setLibelle(rs.getString("libelle"));
 				listeRole.add(role);
 			}
 
@@ -51,10 +52,12 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 		Role role = null;
 		PreparedStatement ps;
 		try {
-			ps = cnx.prepareStatement(SELECT_BY_ID, PreparedStatement.RETURN_GENERATED_KEYS);
+			ps = cnx.prepareStatement(SELECT_BY_ID);
+			ps.setInt(1, id); 
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				role = new Role();
+				role.setId(id);
 				role.setLibelle(rs.getString("libelle"));
 				}
 		} catch (SQLException e) {
