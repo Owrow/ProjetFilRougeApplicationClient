@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/general.css" />
 </head>
 <body>
+<%@ include file="../../fragments/navbar.jspf"%>
+
 <form action="updateProfile" method="POST">
     <label for="nom">Nom :</label>
     <input type="text" name="nom" value="${client.nom }" required><br>
@@ -22,6 +25,6 @@
 
     <input type="submit" value="Modifier">
 </form>
-
+<%@ include file="../../fragments/footer.jspf"%>
 </body>
 </html>

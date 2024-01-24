@@ -81,9 +81,10 @@ public class ServletInscription extends HttpServlet {
 
 		
 		
-		
 	
 		request.getRequestDispatcher("/WEB-INF/jsp/public/PageInscription.jsp").forward(request, response);
+	
+		
 	}
 
 

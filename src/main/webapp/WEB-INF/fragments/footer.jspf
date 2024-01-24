@@ -3,14 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>PATE D'OR</title>
+    <meta charset="ISO-8859-1">
+    <title>PATE D'OR</title>
+    <link rel="stylesheet" href="css/footer.css" />
 </head>
 <body>
-<footer>
-    <div class="container">
+
+<footer class="footer">
+    <div class="footer-container">
         <p>&copy; 2024 Pâtes d'or. Tous droits réservés.</p>
-        
     </div>
 </footer>
 
