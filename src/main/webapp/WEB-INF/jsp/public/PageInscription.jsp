@@ -25,7 +25,7 @@
 <label for="mail">Mail :</label>
 <input type="email" name="mail">
  
- <label for="telephone">Téléphone :</label>                                                                                                                                                                                        >
+<label for="telephone">Téléphone : </label>                                                                                                                                                                                        
 <input type="tel" name="telephone">
 
 <label for="password">Mot de passe :</label>

@@ -57,6 +57,7 @@ public class ServletTraitementReservation extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
 			String idRestaurantStr = request.getParameter("id_restaurant");
 
 			int idRestaurant = Integer.parseInt(idRestaurantStr);
@@ -128,6 +129,7 @@ public class ServletTraitementReservation extends HttpServlet {
 				e.printStackTrace();
 			}
 			
+			request.getRequestDispatcher("/WEB-INF/jsp/private/reservationEnvoyee.jsp").forward(request, response);
 		
 	}
 
