@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bo.Client;
-import bo.Role;
 
 public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
@@ -23,6 +22,10 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
 	private static final String SELECT = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c ";
+	
+	private static final String PASSWORD = "SELECT * FROM " + TABLE_NAME +" WHERE mail = ? AND mdp= ?";
+	
+	
 
 	private Connection cnx;
 
@@ -126,6 +129,34 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			throw new DALException("Impossible de supprimer ce client d'id " + id, e);
 		}
 	}
+	
+	
 
-
+	public Client getPassword(String password, String mail) throws DALException {
+		Client client = null;
+		try {
+            PreparedStatement ps = cnx.prepareStatement(PASSWORD); 
+            
+           
+           ps.setString(1,mail);
+           ps.setString(2,password);
+           ResultSet rs = ps.executeQuery(); 
+               if (rs.next()) {
+            	   client = new Client();
+   				   client.setNom(rs.getString("mdp"));
+   				   client.setPrenom(rs.getString("mail"));
+                   
+               }
+           
+       } catch (SQLException e) {
+           e.printStackTrace();
+           }
+      
+       
+       return client;
+   
+	
+	}
 }
+
+

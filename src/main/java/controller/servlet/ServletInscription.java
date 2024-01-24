@@ -19,69 +19,56 @@ public class ServletInscription extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Client clientSignIn;
 	private ClientBLL clientBll;
+	private Role role;
 	private RoleBLL roleBll;
-	
-	
-	
+
+
+
 	@Override
 	public void init() throws ServletException {
-		
+
 		try {
 			clientBll = new ClientBLL();
-			roleBll = new RoleBLL();
+			role = new Role();
 			clientSignIn = new Client();
-			
+			roleBll = new RoleBLL();
+
+
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
-	
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+
+
 		String nameSignIn       = request.getParameter("nom");
 		String firstNameSignIn  = request.getParameter("prenom");
 		String mailSignIn       = request.getParameter("mail");
 		String telSignIn        = request.getParameter("telephone");
 		String passSignIn       = request.getParameter("password");
 		String confirPassSignIn = request.getParameter("confirmPass");
-		
-//		System.out.println(name);
-//		System.out.println(firstName);
-		System.out.println(mailSignIn);
-//		System.out.println(telSignIn);
-//		System.out.println(passSignIn);
-//		System.out.println(confirPassSignIn);
-		
-		
 
 		if (passSignIn != null && passSignIn.equals(confirPassSignIn)) {
-		    // Les mots de passe correspondent, continuez le traitement (par exemple, enregistrement dans la base de données)
+
 			try {
-				
-				String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
-				
-				Role roleUser  = roleBll.insert("USER");
-				
-				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, roleUser.getId());
-				
+
+				//String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
+				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
+				System.out.println("Client Ajouter");
+
 			} catch (BLLException e) {
-				
 				e.printStackTrace();
 			}
+				} else {
 			
-			
-			
-		} else {
-		    System.out.println("Les mots de passe ne correspondent pas, renvoyez l'erreur à l'utilisateur"); 
-		   
+					System.out.println("Les mots de passe ne correspondent pas, renvoyez l'erreur à l'utilisateur"); 
+
 		}
 
-		
-		
-	
+
 		request.getRequestDispatcher("/WEB-INF/jsp/public/PageInscription.jsp").forward(request, response);
 	
 		
@@ -89,7 +76,7 @@ public class ServletInscription extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		doGet(request, response);
 	}
 
