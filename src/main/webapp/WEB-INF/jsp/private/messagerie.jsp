@@ -6,10 +6,13 @@
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
 <link rel="stylesheet" href="css/general.css" />
-<link rel="stylesheet" href="css/accueil.css" />
+
 </head>
 <body>
-<form action="messagerie" method="GET">
+<%@ include file="../../fragments/navbar.jspf"%>
+
+
+<form action="messagerie" method="POST">
 <label for="objet" >Objet :</label>
 <textarea id="story" name="story" rows="1" cols="33"></textarea>
 <label for="objet" >Votre message :</label>

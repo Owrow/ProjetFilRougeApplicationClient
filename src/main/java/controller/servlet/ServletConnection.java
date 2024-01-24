@@ -62,7 +62,7 @@ public class ServletConnection extends HttpServlet {
 			    if (client != null){
 			    	System.out.println("la connection est active");
 			      
-			        response.sendRedirect("/ProjetFilRougeClient/src/main/java/controller/servlet/ServletAccueil.java");
+			    	response.sendRedirect("accueil");
 			    } else {
 			       
 			        System.out.println("La connexion n'a pas marché");

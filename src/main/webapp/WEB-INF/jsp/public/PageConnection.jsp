@@ -5,8 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Connection</title>
+<link rel="stylesheet" href="css/general.css" />
+
 </head>
 <body>
+	<%@ include file="../../fragments/navbar.jspf"%>
 
 <form action="ServletConnection" method="post">
 
@@ -23,6 +26,6 @@
 </form>
 
 
-
+<%@ include file="../../fragments/footer.jspf"%>
 </body>
 </html>

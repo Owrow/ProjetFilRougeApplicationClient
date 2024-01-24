@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>PATE D'OR</title>
 <link rel="stylesheet" href="css/navbar.css" />
 </head>
@@ -12,7 +12,7 @@
 		<li><a href="accueil">Accueil</a></li>
 		<li><a href="myAccount">Mon profil</a></li>
 		<li><a href="ServletInscription">S'inscrire</a></li>
-		<li><a href="ServletConnexion">Se connecter</a></li>
+		<li><a href="ServletConnection">Se connecter</a></li>
 		<li><a href="messagerie">Messagerie</a></li>
 
 	</ul>

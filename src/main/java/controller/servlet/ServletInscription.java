@@ -54,10 +54,11 @@ public class ServletInscription extends HttpServlet {
 		if (passSignIn != null && passSignIn.equals(confirPassSignIn)) {
 
 			try {
-
-				//String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
+			
 				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
 				System.out.println("Client Ajouter");
+				response.sendRedirect("accueil");
+				return;
 
 			} catch (BLLException e) {
 				e.printStackTrace();
@@ -65,7 +66,7 @@ public class ServletInscription extends HttpServlet {
 				} else {
 			
 					System.out.println("Les mots de passe ne correspondent pas, renvoyez l'erreur à l'utilisateur"); 
-
+					
 		}
 
 
