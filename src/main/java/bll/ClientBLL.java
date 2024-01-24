@@ -2,6 +2,8 @@ package bll;
 
 import java.util.List;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import bo.Client;
 import dal.ClientDAOjdbcImpl;
 import dal.DALException;
@@ -9,6 +11,7 @@ import dal.GenericDAO;
 
 public class ClientBLL {
 	private GenericDAO<Client> dao;
+	private ClientDAOjdbcImpl daoJdbcImpl;
 
 	public ClientBLL() throws BLLException {
 		try {
@@ -66,15 +69,38 @@ public class ClientBLL {
 		}
 	}
 
-	public Client getPassword( String mail, String password ) throws BLLException {
+	public Client getUserAndPassword( String password , String mail ) throws BLLException {
 			try {
-				return dao.getPassword(password, mail);
+				daoJdbcImpl = new ClientDAOjdbcImpl();
+				return daoJdbcImpl.getPassword(password, mail);
 			} catch (DALException e) {
 				throw new BLLException("Echec de la suppression", e);
 			}
 				
 
 		}
+	
+	public boolean getHashPassword( String password ,String mail ) throws BLLException {
+		
+			
+			try {
+				daoJdbcImpl = new ClientDAOjdbcImpl();
+				String hashPass = daoJdbcImpl.getHashPassword(mail);
+			     if (hashPass != null && BCrypt.checkpw(password, hashPass)) {
+			            return true;
+			        }
+			      
+			    
+			} catch (DALException e) {
+				
+				e.printStackTrace();
+			}
+			
+			  return false;   
+		   
+		
 	}
+}
+
 
 

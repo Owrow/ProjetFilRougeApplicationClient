@@ -22,10 +22,12 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
 	private static final String SELECT = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c ";
-	
-	private static final String PASSWORD = "SELECT * FROM " + TABLE_NAME +" WHERE mail = ? AND mdp= ?";
-	
-	
+
+	private static final String PASSWORD = "SELECT * FROM " + TABLE_NAME +" WHERE mdp = ? AND mail= ?";
+
+	private static final String HASH_PASSWORD = "SELECT mdp FROM " + TABLE_NAME +" WHERE mail= ?";
+
+
 
 	private Connection cnx;
 
@@ -46,7 +48,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 				client.setPrenom(rs.getString("mail"));
 				client.setPrenom(rs.getString("telephone"));
 				client.setPrenom(rs.getString("mdp"));
-				
+
 				listeClient.add(client);
 			}
 
@@ -89,7 +91,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			ps.setString(4, client.getTelephone());
 			ps.setString(5, client.getMdp());
 			ps.setInt   (6, client.getRole());
-		    ps.executeUpdate();
+			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) {
@@ -129,34 +131,56 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			throw new DALException("Impossible de supprimer ce client d'id " + id, e);
 		}
 	}
-	
-	
-	@Override
+
+
 	public Client getPassword(String password, String mail) throws DALException {
 		Client client = null;
 		try {
-            PreparedStatement ps = cnx.prepareStatement(PASSWORD); 
-            
-           
-           ps.setString(1,mail);
-           ps.setString(2,password);
-           ResultSet rs = ps.executeQuery(); 
-               if (rs.next()) {
-            	   client = new Client();
-   				   client.setNom(rs.getString("mdp"));
-   				   client.setPrenom(rs.getString("mail"));
-                   
-               }
-           
-       } catch (SQLException e) {
-           e.printStackTrace();
-           }
-      
-       
-       return client;
-   
-	
+			PreparedStatement ps = cnx.prepareStatement(PASSWORD); 
+
+
+			ps.setString(1,password);
+			ps.setString(2,mail);
+			ResultSet rs = ps.executeQuery(); 
+			if (rs.next()) {
+				client = new Client();
+				client.setMdp(rs.getString("mdp"));
+				client.setMail(rs.getString("mail"));
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+
+		return client;
+
+
 	}
+
+	public String getHashPassword(String mail) {
+		String passwordHash = null;
+		try {
+			PreparedStatement ps = cnx.prepareStatement(HASH_PASSWORD); 
+		      ps.setString(1, mail);
+	            
+	            try (ResultSet rs = ps.executeQuery()) {
+	                if (rs.next()) {
+	                    passwordHash = rs.getString("mdp");
+	                }
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	          
+	        }
+	        return passwordHash;
+	    }
+
+
+
+
 }
+
 
 
