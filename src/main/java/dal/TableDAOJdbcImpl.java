@@ -80,10 +80,6 @@ private static final String TABLE_NAME = " tables ";
 			ps.setInt(3, table.getNombre_places());
 			ps.executeUpdate();
 
-			System.out.println(id_restaurant);
-			System.out.println(table.getNumero());
-			System.out.println(table.getNombre_places());
-			
 			ResultSet rs = ps.getGeneratedKeys();
 			if (rs.next()) { 
 				int id = rs.getInt(1); 
