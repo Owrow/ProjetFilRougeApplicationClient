@@ -56,6 +56,7 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				role = new Role();
+				role.setId(id);
 				role.setLibelle(rs.getString("libelle"));
 				}
 		} catch (SQLException e) {
