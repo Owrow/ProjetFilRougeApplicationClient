@@ -16,12 +16,16 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
 			+ " SET nom = ?, prenom = ?, telephone = ?, mail = ?, mdp = ? WHERE id = ?";
-	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nom, prenom, telephone, mail, mdp, type_role) VALUES (?,?,?,?,?,?)";
+	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nom, prenom, telephone, mail, mdp, id_role) VALUES (?,?,?,?,?,?)";
 	private static final String SELECT_BY_ID = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c WHERE c.id = ?";
 
 	private static final String SELECT = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c ";
+	
+	private static final String PASSWORD = "SELECT * FROM " + TABLE_NAME +" WHERE mail = ? AND mdp= ?";
+	
+	
 
 	private Connection cnx;
 
@@ -125,6 +129,34 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			throw new DALException("Impossible de supprimer ce client d'id " + id, e);
 		}
 	}
-
-
+	
+	
+	@Override
+	public Client getPassword(String password, String mail) throws DALException {
+		Client client = null;
+		try {
+            PreparedStatement ps = cnx.prepareStatement(PASSWORD); 
+            
+           
+           ps.setString(1,mail);
+           ps.setString(2,password);
+           ResultSet rs = ps.executeQuery(); 
+               if (rs.next()) {
+            	   client = new Client();
+   				   client.setNom(rs.getString("mdp"));
+   				   client.setPrenom(rs.getString("mail"));
+                   
+               }
+           
+       } catch (SQLException e) {
+           e.printStackTrace();
+           }
+      
+       
+       return client;
+   
+	
+	}
 }
+
+

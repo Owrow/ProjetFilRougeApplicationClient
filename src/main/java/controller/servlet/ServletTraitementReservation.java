@@ -66,6 +66,12 @@ public class ServletTraitementReservation extends HttpServlet {
 			Carte carte = new Carte();
 			List<PlatCarte> platCartes = new ArrayList();
 			List<Categorie> categories = new ArrayList<>();
+			
+			for (Categorie current : categories) {
+				System.out.println(current);
+			}
+			
+			
 			Categorie categorie = new Categorie();
 		
 
@@ -89,18 +95,7 @@ public class ServletTraitementReservation extends HttpServlet {
 			request.setAttribute("categorie", categorie);
 			request.setAttribute("categories", categories);
 			
-			
-			Client clientsession = new Client(1,"Faure","Thomas","test@gmail.com","0606060606","patate");
-			request.getSession().setAttribute("client", clientsession);
-			Client client = (Client) request.getSession().getAttribute("client");
-			System.out.println(client.getId());
-			System.out.println(client.getPrenom());
-			System.out.println(client.getNom());
-			System.out.println(client.getMail());
-			System.out.println(client.getMdp());
-			System.out.println(client.getTelephone());
-			
-			
+
 			request.getRequestDispatcher("/WEB-INF/jsp/private/reservation.jsp").forward(request, response);
 
 	}
