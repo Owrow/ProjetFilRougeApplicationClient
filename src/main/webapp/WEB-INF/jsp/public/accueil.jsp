@@ -21,8 +21,8 @@
 			</div>
 			
 			
-				<form action="detailResto" method="GET">
-					<input type="hidden" name="id" value='${current.id}' /> 
+				<form action="ServletTraitementReservation" method="GET">
+					<input type="hidden" name="id_restaurant" value='${current.id}' /> 
 					<input class="btnDetails" type="submit" value="Réserver" />
 				</form>
 		</c:forEach>

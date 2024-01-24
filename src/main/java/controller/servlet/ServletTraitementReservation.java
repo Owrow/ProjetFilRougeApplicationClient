@@ -1,6 +1,8 @@
 package controller.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +12,12 @@ import bll.CategorieBLL;
 import bll.ClientBLL;
 import bll.PlatBLL;
 import bll.PlatCarteBLL;
+import bll.ReservationBLL;
 import bll.RestaurantBLL;
 import bll.RoleBLL;
 import bo.Carte;
 import bo.Categorie;
+import bo.Client;
 import bo.Plat;
 import bo.PlatCarte;
 import bo.Restaurant;
@@ -33,6 +37,7 @@ public class ServletTraitementReservation extends HttpServlet {
 	private PlatCarteBLL platCarteBll;
 	private RoleBLL roleBll;
 	private CategorieBLL categorieBll;
+	private ReservationBLL reservationBll;
 
 
 	public void init(ServletConfig config) throws ServletException {
@@ -44,6 +49,7 @@ public class ServletTraitementReservation extends HttpServlet {
 			platCarteBll = new PlatCarteBLL();
 			roleBll = new RoleBLL();
 			categorieBll = new CategorieBLL();
+			reservationBll = new ReservationBLL();
 
 		} catch (BLLException e) {
 			e.printStackTrace();
@@ -82,14 +88,52 @@ public class ServletTraitementReservation extends HttpServlet {
 			request.setAttribute("platCartes", platCartes);
 			request.setAttribute("categorie", categorie);
 			request.setAttribute("categories", categories);
+			
+			
+			Client clientsession = new Client(1,"Faure","Thomas","test@gmail.com","0606060606","patate");
+			request.getSession().setAttribute("client", clientsession);
+			Client client = (Client) request.getSession().getAttribute("client");
+			System.out.println(client.getId());
+			System.out.println(client.getPrenom());
+			System.out.println(client.getNom());
+			System.out.println(client.getMail());
+			System.out.println(client.getMdp());
+			System.out.println(client.getTelephone());
+			
+			
 			request.getRequestDispatcher("/WEB-INF/jsp/private/reservation.jsp").forward(request, response);
 
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
+			
+			Client client = (Client) request.getSession().getAttribute("client");
+			
+			System.out.println(client.getId());
+			
+			String restaurantIdStr = request.getParameter("restaurantId");
+			String dateReservationStr = request.getParameter("date");
+			String heureReservationStr = request.getParameter("creneau");
+			String tailleGroupeStr = request.getParameter("tailleGroupe");
+			
+			
+			int restaurantId = Integer.parseInt(restaurantIdStr);
+			Restaurant restaurant = new Restaurant();
+			restaurant.setId(restaurantId);
+			
+			LocalDate dateReservation = LocalDate.parse(dateReservationStr);
+			LocalTime heureReservation = LocalTime.parse(heureReservationStr);
+			int tailleGroupe = Integer.parseInt(tailleGroupeStr);
+			
+			try {
+				reservationBll.insert(client, restaurant, dateReservation, heureReservation, tailleGroupe);
+			} catch (BLLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		
 	}
 
 }

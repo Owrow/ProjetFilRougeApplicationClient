@@ -23,8 +23,6 @@
    <p>Menu - ${carte.nom}</p>
     
 <c:forEach var="currentCategorie" items="${categories}">
-	<%-- <c:if test="${currentCategorie.id }"> --%>
-	
 
     <h3>${currentCategorie.nom}</h3>
     <ul>
@@ -36,16 +34,15 @@
             </c:if>
         </c:forEach> 
     </ul>
-<%--     </c:if> --%>
 </c:forEach>
 </div>
 
 
-  <h1>Réservation de Restaurant</h1>
+  <h3>Réservation de Restaurant</h3>
 
     <form action="ServletTraitementReservation" method="post">
 
-        <input type="hidden" name="restaurantId" value="${ restaurantId }">
+        <input type="hidden" name="restaurantId" value="${ restaurant.id }">
 
          <label for="date">Date de réservation :</label>
         <input type="date" id="date" name="date" required>
