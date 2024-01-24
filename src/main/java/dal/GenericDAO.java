@@ -12,6 +12,6 @@ public interface GenericDAO<T> {
 	void update(T donnee) throws DALException;
 	void delete(int T) throws DALException;
 	
-	Client getPassword(String password, String mail) throws DALException;
+	
 
 }

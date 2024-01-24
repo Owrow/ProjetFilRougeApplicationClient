@@ -131,7 +131,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 	}
 	
 	
-	@Override
+
 	public Client getPassword(String password, String mail) throws DALException {
 		Client client = null;
 		try {
