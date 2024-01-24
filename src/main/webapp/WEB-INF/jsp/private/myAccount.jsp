@@ -5,11 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
+<link rel="stylesheet" href="css/general.css" />
 </head>
 <body>
 <%@ include file="../../fragments/navbar.jspf"%>
 
-<h2>Profil du Client</h2>
+
+<h2>Bonjour ${client.prenom }</h2>
 
 
 <div>
@@ -33,7 +35,7 @@
 </form>
 
 
-
+<%@ include file="../../fragments/footer.jspf"%>
 
 </body>
 </html>

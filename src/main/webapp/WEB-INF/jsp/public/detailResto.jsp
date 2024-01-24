@@ -5,9 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
+<link rel="stylesheet" href="css/general.css" />
 </head>
 <body>
 <%@ include file="../../fragments/navbar.jspf"%>
+
 <h1>${restaurant.nom }</h1>
 <p>${restaurant.adresse }</p>
 
@@ -30,6 +32,6 @@
         </ul>
     </c:forEach>
 </div>
-
+<%@ include file="../../fragments/footer.jspf"%>
 </body>
 </html>

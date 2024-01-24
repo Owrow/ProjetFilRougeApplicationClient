@@ -10,8 +10,10 @@ import dal.DALException;
 import dal.GenericDAO;
 
 public class ClientBLL {
+
 	private GenericDAO<Client> dao;
 	private ClientDAOjdbcImpl daoJdbcImpl;
+
 
 	public ClientBLL() throws BLLException {
 		try {
