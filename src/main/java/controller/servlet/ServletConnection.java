@@ -22,10 +22,10 @@ public class ServletConnection extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 
-		super.init();
-		client = new Client();
+		
 
 		try {
+			client = new Client();
 			clientBll = new ClientBLL();
 
 		} catch (BLLException e) {
@@ -41,9 +41,11 @@ public class ServletConnection extends HttpServlet {
 
 		Client client = (Client) request.getSession().getAttribute("client");
 		if (client == null) {
+			
 			System.out.println("client pas encore connecté");
 			request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
 		} else {
+			
 			System.out.println("client deja connecté");
 			response.sendRedirect("accueil");
 		}
@@ -62,9 +64,17 @@ public class ServletConnection extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
 
 		} 
+		
+			
 		try {	
 
 			client = clientBll.getHashPassword(mail);
+			
+			if(client == null) {
+				System.out.println("aucun client en base avec cet email");
+				request.getRequestDispatcher("/WEB-INF/jsp/public/PageInscription.jsp").forward(request, response);
+			}
+			
 			if(pass.equals(client.getMdp())) {
 				System.out.println("mdp correcte");
 				HttpSession session = request.getSession();
