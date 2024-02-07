@@ -17,16 +17,18 @@ public class ServletMyAccount extends HttpServlet {
 			System.out.println("client pas encore connecté");
 			request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
 		} else {
-			System.out.println("client deja connecté");
+
+			System.out.println("client connecté");
+
 			request.getRequestDispatcher("WEB-INF/jsp/private/myAccount.jsp").forward(request, response);
 		}
 	}
-
+ 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 		
 		
 	}
-
+ 
 }

@@ -19,9 +19,7 @@
 		<li><a href="ServletInscription">S'inscrire</a></li>
 		<li><a href="ServletConnection">Se connecter</a></li>
 		</c:if>
-		<li><a href="messagerie">Messagerie</a></li>
-
 	</ul>
 
 </body>
-</html>
+</html> 

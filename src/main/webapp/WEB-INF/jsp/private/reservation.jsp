@@ -67,8 +67,14 @@
 			type="number" id="tailleGroupe" name="tailleGroupe" min="1" required>
 
 		<button type="submit">Réserver</button>
+		
+	
 	</form>
-
+	<form action="messagerie" method="GET">
+	<input type="hidden" name="restaurantId" value="${ restaurant.id }">
+	<input  type="submit" value="Nous contacter !" />
+	
+	</form>
 
 	<%-- <div>
 		<%@ include file="../../fragments/footer.jspf"%>

@@ -86,7 +86,6 @@ public class PlatDAOjdbcImpl implements GenericDAO<Plat> {
 			ps.setString(1, plat.getNom());
 			ps.setFloat (3, plat.getPrix());
 			ps.setString(2, plat.getDescription());
-			ps.setFloat(3, plat.getPrix());
 			ps.setInt(4, plat.getCategorie().getId());
 
 			ps.executeUpdate();

@@ -2,7 +2,7 @@ package controller.servlet;
 
 import java.io.IOException;
 
-import org.mindrot.jbcrypt.BCrypt;
+
 
 import bll.BLLException;
 import bll.ClientBLL;
@@ -68,6 +68,7 @@ public class ServletConnection extends HttpServlet {
 			
 		try {	
 
+
 			client = clientBll.getHashPassword(mail);
 			
 			if(client == null) {
@@ -85,6 +86,7 @@ public class ServletConnection extends HttpServlet {
 
 				System.out.println("mdp incorrecte");
 				request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+
 			}
 
 		} catch (BLLException e) {
