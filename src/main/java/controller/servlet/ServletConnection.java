@@ -22,10 +22,10 @@ public class ServletConnection extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 
-		super.init();
-		client = new Client();
+		
 
 		try {
+			client = new Client();
 			clientBll = new ClientBLL();
 
 		} catch (BLLException e) {
@@ -38,7 +38,18 @@ public class ServletConnection extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doPost(request, response);
+
+		Client client = (Client) request.getSession().getAttribute("client");
+		if (client == null) {
+			
+			System.out.println("client pas encore connecté");
+			request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+		} else {
+			
+			System.out.println("client deja connecté");
+			response.sendRedirect("accueil");
+		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -52,8 +63,12 @@ public class ServletConnection extends HttpServlet {
 			System.out.println("Le mail ou le mot de passe n'est pas renseigné.");
 			request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
 
-		} else {
+		} 
+		
+			
+		try {	
 
+<<<<<<< HEAD
 			try {
 
 
@@ -78,8 +93,32 @@ public class ServletConnection extends HttpServlet {
 			} catch (BLLException e) {
 
 				e.printStackTrace();
+=======
+			client = clientBll.getHashPassword(mail);
+			
+			if(client == null) {
+				System.out.println("aucun client en base avec cet email");
+				request.getRequestDispatcher("/WEB-INF/jsp/public/PageInscription.jsp").forward(request, response);
+			}
+			
+			if(pass.equals(client.getMdp())) {
+				System.out.println("mdp correcte");
+				HttpSession session = request.getSession();
+				session.setAttribute("client", client);
+				session.setMaxInactiveInterval(30 * 60);
+				response.sendRedirect("accueil");
+			} else {
+
+				System.out.println("mdp incorrecte");
+				request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+>>>>>>> 9b5eed6870d4ecf36225c6320594c52d0d4c949e
 			}
 
+		} catch (BLLException e) {
+
+			e.printStackTrace();
 		}
+
+
 	}
 }
