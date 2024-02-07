@@ -2,7 +2,7 @@ package controller.servlet;
 
 import java.io.IOException;
 
-import org.mindrot.jbcrypt.BCrypt;
+
 
 import bll.BLLException;
 import bll.ClientBLL;
@@ -56,27 +56,24 @@ public class ServletConnection extends HttpServlet {
 
 			try {
 
-//			String hashedPassword = BCrypt.hashpw(pass, BCrypt.gensalt());
-				client = clientBll.getUserAndPassword(pass, mail);
-				System.out.println(client);
 
-				if (client != null) {
-					System.out.println("la connection est active");
-					response.sendRedirect("accueil");
-
-					client = clientBll.getHashPassword(mail);
+			client = clientBll.getUserAndPassword(pass, mail);
+				
+				if (client != null){
+			
+			    response.sendRedirect("accueil");
+			    client = clientBll.getHashPassword(mail);
+					
 
 					System.out.println(client);
 					HttpSession session = request.getSession();
 					session.setAttribute("client", client);
 
-					session.setMaxInactiveInterval(30 * 60);
-
-				} else {
-
-					System.out.println("La connexion n'a pas marché");
-					request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+					session.setMaxInactiveInterval(30 * 60);					
+					
+				}else {request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
 				}
+				
 
 			} catch (BLLException e) {
 

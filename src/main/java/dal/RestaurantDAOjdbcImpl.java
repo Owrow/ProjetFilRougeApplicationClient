@@ -112,6 +112,7 @@ public class RestaurantDAOjdbcImpl implements GenericDAO<Restaurant> {
 			ps.setTime(4, Time.valueOf(restaurant.getFermeture()));
 			ps.setInt(5,  restaurant.getId());
 			ps.executeUpdate();
+			System.out.println("je passe dans le dal pour l'update");
 		} catch (SQLException e) {
 			throw new DALException(
 					"Impossible de mettre a jour les informations pour le restaurant d'id " + restaurant.getId(), e);

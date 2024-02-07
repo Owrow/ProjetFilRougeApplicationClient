@@ -55,10 +55,9 @@ public class ServletInscription extends HttpServlet {
 
 			try {
 
-			
-			
 
-//				String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
+				//String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
+				//clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, 1);
 				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
 
 				System.out.println("Client Ajouter");

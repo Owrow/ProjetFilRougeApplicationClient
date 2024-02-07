@@ -24,53 +24,60 @@ public class ServletUpdateProfile extends HttpServlet {
 		}
 	}
 	
-	// Etape 1 : recuperer les parametres	
+	
+  
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Client client = (Client) request.getSession().getAttribute("client");
+		if (client == null) {
+			System.out.println("client pas encore connecté");
+			request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+		} else {
+			System.out.println("client  connecté");
+			request.getRequestDispatcher("WEB-INF/jsp/private/updateProfile.jsp").forward(request, response);
+		}
+	}
+	
+// Etape 1 : recuperer les parametres	
 	// Etape 2 : passage dans le bon type	
 	// Etape 3 : exploitation des parametres par le bll
 	// Etape 4 : ajout des attributs a la requete	
 	// Etape 5 : redirection vers la jsp
-  
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String idClient = request.getParameter("id");		
-		int id = Integer.parseInt(idClient);		
-		
-		try {
-			Client client = clientBll.selectById(id);			
-			request.setAttribute("client", client);
-		} catch (BLLException e) {
-			e.printStackTrace();
-		}			
-			
-		request.getRequestDispatcher("WEB-INF/jsp/private/updateProfile.jsp").forward(request, response);
-		
-	}
-
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idClient = request.getParameter("id");
-		String nomClient = request.getParameter("nom");
-		String prenomClient = request.getParameter("prenom");
-		String mailClient = request.getParameter("mail");
-		String telClient = request.getParameter("telephone");
-		
-		int id = Integer.parseInt(idClient);
-		
-		try {
-			Client clientToUpdate = clientBll.selectById(id);
-			clientToUpdate.setNom(nomClient);
-			clientToUpdate.setPrenom(prenomClient);
-			clientToUpdate.setMail(mailClient);
-			clientToUpdate.setTelephone(telClient);
-			clientBll.update(clientToUpdate);
-			response.sendRedirect("details?id=" + id);
-			
-		} catch (BLLException e) {			
-			request.setAttribute("erreur", e);
-			request.getRequestDispatcher("/WEB-INF/jsp/rpivate/updateProfilejsp").forward(request, response);
-		}		
-		
-		
+	  String clientStr = request.getParameter("id");
+	  System.out.println("parse de id" + clientStr );
+	    int clientId = Integer.parseInt(clientStr);
+	    
+	    try {
+	        
+	        Client client = clientBll.selectById(clientId);	        
+	       
+	        String nomClient = request.getParameter("nom");
+	        String prenomClient = request.getParameter("prenom");
+	        String mailClient = request.getParameter("mail");
+	       
+	        String telClient = request.getParameter("telephone");
+	        
+	        client.setNom(nomClient);
+	        client.setPrenom(prenomClient);
+	        client.setMail(mailClient);
+	       
+	        client.setTelephone(telClient);
+	        
+	        client.setId(clientId);
+	        
+	        System.out.println("client à jour" + client );
+	        clientBll.update(client);
+	        System.out.println("client après update" + client );
+	         request.getRequestDispatcher("/WEB-INF/jsp/private/updateProfile.jsp").forward(request, response);
+	    
+	    } catch (BLLException e) {
+	      e.printStackTrace();
+	       
+	      
+	    }
 	}
+
 
 }

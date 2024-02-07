@@ -98,7 +98,7 @@ public class PlatCarteDAOjdbcImpl implements GenericDAO<PlatCarte> {
 			ps = cnx.prepareStatement(SELECT_BY_ID_CARTE);
 			ps.setInt(1, id); 
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
 				platCarte = new PlatCarte();
 				Plat plat = new Plat();
 				Carte carte = new Carte();

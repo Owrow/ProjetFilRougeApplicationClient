@@ -11,6 +11,8 @@
 <%@ include file="../../fragments/navbar.jspf"%>
 
 <form action="updateProfile" method="POST">
+<p >N° d'id : ${client.id } </p>
+
     <label for="nom">Nom :</label>
     <input type="text" name="nom" value="${client.nom }" required><br>
 
@@ -19,9 +21,11 @@
 
     <label for="mail">Mail :</label>
     <input type="email" name="mail" value="${client.mail }" required><br>
-
+    
     <label for="telephone">Téléphone :</label>
     <input type="text" name="telephone" value=${client.telephone } required><br>
+    
+    <input type="hidden" name="id" value="${client.id }" />
 
     <input type="submit" value="Modifier">
 </form>

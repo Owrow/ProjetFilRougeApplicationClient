@@ -11,15 +11,15 @@
 <%@ include file="../../fragments/navbar.jspf"%>
 
 
-<h2>Bonjour ${client.prenom }</h2>
+<h2>Bonjour ${client.prenom } </h2>
 
 
 <div>
-    <p><strong>Nom :</strong> </p>
-    <p><strong>Prénom :</strong> </p>
-    <p><strong>Mail :</strong> </p>
-    <p><strong>Téléphone :</strong> </p>
-    <p><strong>Rôle :</strong> </p>
+    <p>Nom : ${client.nom } </p>
+    <p>Prénom : ${client.prenom } </p>
+    <p>Mail : ${client.mail } </p>
+    <p>Téléphone : ${client.telephone }</p>
+   
 </div>
 
 

@@ -38,14 +38,14 @@ public class MessageDAOjdbcImpl implements GenericDAO<Message> {
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				Message message = new Message();
-				message.setMessage_text(rs.getString("message_text"));
-
 				Client client = new Client();
-				client.setId(rs.getInt("id_client"));
-
 				Restaurant restaurant = new Restaurant();
-				restaurant.setId(rs.getInt("id_restaurant"));
-
+				
+				message.setMessage_text(rs.getString("message_text"));				
+				client.setId(rs.getInt("id_client"));				
+				restaurant.setId(rs.getInt("id_restaurant"));	
+				
+				
 				message.setClient(client);
 				message.setRestaurant(restaurant);
 
@@ -69,6 +69,14 @@ public class MessageDAOjdbcImpl implements GenericDAO<Message> {
 			ps.setString(1, message.getMessage_text());
 			ps.setInt(2, message.getClient().getId());
 			ps.setInt(3, message.getRestaurant().getId());
+			
+			ps.executeUpdate();
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			if(rs.next()) {
+				int id = rs.getInt(1);
+				message.setId(id);
+			}
 		} catch (SQLException e) {
 			throw new DALException("Impossible d'inserer un message", e);
 		}

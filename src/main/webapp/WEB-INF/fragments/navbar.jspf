@@ -13,9 +13,9 @@
 		<li><a href="myAccount">Mon profil</a></li>
 		<li><a href="ServletInscription">S'inscrire</a></li>
 		<li><a href="ServletConnection">Se connecter</a></li>
-		<li><a href="messagerie">Messagerie</a></li>
+		
 
 	</ul>
 
 </body>
-</html>
+</html> 

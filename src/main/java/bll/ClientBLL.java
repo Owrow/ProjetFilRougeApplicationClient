@@ -2,7 +2,6 @@ package bll;
 
 import java.util.List;
 
-import org.mindrot.jbcrypt.BCrypt;
 
 import bo.Client;
 import dal.ClientDAOjdbcImpl;
@@ -58,6 +57,7 @@ public class ClientBLL {
 
 		try {
 			dao.update(client);
+			System.out.println("je passe dans le bll pour l'update");
 		} catch (DALException e) {
 			throw new BLLException("Echec de la mise a jour", e);
 		}
