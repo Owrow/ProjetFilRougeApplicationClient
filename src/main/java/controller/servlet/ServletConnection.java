@@ -68,32 +68,7 @@ public class ServletConnection extends HttpServlet {
 			
 		try {	
 
-<<<<<<< HEAD
-			try {
 
-
-			client = clientBll.getUserAndPassword(pass, mail);
-				
-				if (client != null){
-			
-			    response.sendRedirect("accueil");
-			    client = clientBll.getHashPassword(mail);
-					
-
-					System.out.println(client);
-					HttpSession session = request.getSession();
-					session.setAttribute("client", client);
-
-					session.setMaxInactiveInterval(30 * 60);					
-					
-				}else {request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
-				}
-				
-
-			} catch (BLLException e) {
-
-				e.printStackTrace();
-=======
 			client = clientBll.getHashPassword(mail);
 			
 			if(client == null) {
@@ -111,7 +86,7 @@ public class ServletConnection extends HttpServlet {
 
 				System.out.println("mdp incorrecte");
 				request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
->>>>>>> 9b5eed6870d4ecf36225c6320594c52d0d4c949e
+
 			}
 
 		} catch (BLLException e) {
