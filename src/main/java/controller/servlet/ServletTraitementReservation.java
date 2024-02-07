@@ -57,7 +57,9 @@ public class ServletTraitementReservation extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		Client client = (Client) request.getSession().getAttribute("client");
+		System.out.println(client);
+		
 			String idRestaurantStr = request.getParameter("id_restaurant");
 
 			int idRestaurant = Integer.parseInt(idRestaurantStr);
@@ -105,15 +107,12 @@ public class ServletTraitementReservation extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 			Client client = (Client) request.getSession().getAttribute("client");
-			
-			System.out.println(client.getId());
-			
+		
 			String restaurantIdStr = request.getParameter("restaurantId");
 			String dateReservationStr = request.getParameter("date");
 			String heureReservationStr = request.getParameter("creneau");
 			String tailleGroupeStr = request.getParameter("tailleGroupe");
-			
-			
+						
 			int restaurantId = Integer.parseInt(restaurantIdStr);
 			Restaurant restaurant = new Restaurant();
 			restaurant.setId(restaurantId);
