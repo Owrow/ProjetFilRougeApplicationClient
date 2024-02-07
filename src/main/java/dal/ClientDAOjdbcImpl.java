@@ -15,7 +15,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
-			+ " SET nom = ?, prenom = ?, telephone = ?, mail = ?, mdp = ? WHERE id = ?";
+			+ " SET nom = ?, prenom = ?, telephone = ?, mail = ?,  WHERE id = ?";
 	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nom, prenom, telephone, mail, mdp, id_role) VALUES (?,?,?,?,?,?)";
 	private static final String SELECT_BY_ID = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c WHERE c.id = ?";
@@ -90,7 +90,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			ps.setString(3, client.getMail());
 			ps.setString(4, client.getTelephone());
 			ps.setString(5, client.getMdp());
-			ps.setInt   (6, client.getRole());
+			ps.setInt(6, client.getRole());
 			ps.executeUpdate();
 
 			ResultSet rs = ps.getGeneratedKeys();
@@ -108,10 +108,11 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 		try {
 			PreparedStatement ps = cnx.prepareStatement(UPDATE);
 			ps.setString(1, client.getNom());
-			ps.setString(2, client.getPrenom());
-			ps.setString(3, client.getMail());
-			ps.setString(4, client.getTelephone());
-			ps.setString(5, client.getMdp());
+			ps.setString(2, client.getPrenom());					
+			ps.setString(3, client.getTelephone());
+			ps.setString(4, client.getMail());	
+		
+			ps.setInt(5,  client.getId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {

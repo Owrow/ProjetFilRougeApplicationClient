@@ -86,11 +86,11 @@ public class RoleDAOjdbcImpl implements GenericDAO<Role> {
 		}
 	}
 
-	public void update(Role plat) throws DALException {
+	public void update(Role role) throws DALException {
 		try {
 			PreparedStatement ps = cnx.prepareStatement(UPDATE);
-			ps.setString(1, plat.getLibelle());
-			plat.setId(plat.getId());
+			ps.setString(1, role.getLibelle());
+			role.setId(role.getId());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
