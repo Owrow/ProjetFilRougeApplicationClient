@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import bll.BLLException;
 import bll.ClientBLL;
+import bo.Client;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,17 +23,31 @@ public class ServletDeleteProfile extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
+	
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String idClient = request.getParameter("id");
+		Client client = (Client) request.getSession().getAttribute("client");
+		if (client == null) {
+				request.getRequestDispatcher("/WEB-INF/jsp/public/PageConnection.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("WEB-INF/jsp/private/validationSuppression.jsp").forward(request, response);
+		}
+	}
+	
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		
+		String idClient = req.getParameter("id");
 		int id = Integer.parseInt(idClient);
 		try {
+			
 			clientBll.delete(id);
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("WEB-INF/jsp/public/accueil.jsp").forward(request, response);
+		req.getRequestDispatcher("WEB-INF/jsp/public/accueil.jsp").forward(req, resp);
+		
 	}
 
 }

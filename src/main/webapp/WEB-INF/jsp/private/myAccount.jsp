@@ -15,21 +15,21 @@
 
 
 <div>
-    <p><strong>Nom :</strong> </p>
-    <p><strong>Prénom :</strong> </p>
-    <p><strong>Mail :</strong> </p>
-    <p><strong>Téléphone :</strong> </p>
-    <p><strong>Rôle :</strong> </p>
+    <p><strong>Nom : ${client.nom}</strong> </p>
+    <p><strong>Prénom : ${client.prenom}</strong> </p>
+    <p><strong>Mail : ${client.mail}</strong> </p>
+    <p><strong>Téléphone : ${client.telephone}</strong> </p>
 </div>
 
 
-	<form action="updateProfile" method="GET">
-		<input type="hidden" name="id" value="${client.id }" />
-		<input type="submit" value="Modifier mon profil" />
-	</form>
+<form action="updateProfile" method="GET">
+	<input type="hidden" name="id" value="${client.id }" />
+	<input type="submit" value="Modifier mon profil" />
+</form>
 
 
-<form action="deleteProfile" method="POST">
+<form action="deleteProfile" method="GET">
+	<input type="hidden" name="id" value="${client.id }" />	
      <input type="submit" value="Supprimer">
      <p>Êtes-vous sûr de vouloir supprimer votre profil ?</p>
 </form>
