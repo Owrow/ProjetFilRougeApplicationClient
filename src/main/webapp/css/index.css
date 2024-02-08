@@ -1,0 +1,53 @@
+.font-img {
+    width: 100vw; /* 100% de la largeur de la fenêtre */
+    height: 100vh; /* Ajustez la taille selon vos besoins */
+    max-width: auto; /* Assure que la largeur ne dépasse pas la largeur de l'écran */
+    background-image: url('../assets/imgAccueilMobile.jpg');
+    background-size: auto;
+    background-color: rgb(0, 128, 64);
+    background-position: center; /* Centre l'image à l'intérieur de la div */
+    background-repeat: no-repeat;
+     margin :auto; /* Centre la div horizontalement */
+     position: fixed;
+     top: 0%;
+     left: 0;
+     z-index: -2;
+}
+
+.container {
+    width: 80%; /* Ajustez la largeur du conteneur selon vos besoins */
+	display : flex;
+	flex-direction:column ;
+}
+
+.card-accueil {
+	text-align: center;
+	background-color: rgba(252, 255, 251, 0.3);
+	z-index: -1;
+	margin-top: 10%;
+	margin-left: 10%;
+	width: 25%;
+}
+
+.card-accueil h1 {
+	color: rgb(0, 0, 0);
+	padding-bottom: 50px;
+}
+
+
+
+@media screen and (min-width : 1024px){
+	.font-img {
+	width: 100vw;
+	height: 100vh;
+	max-width: auto;
+	background-image: url('../assets/imgAccueilDesktop.jpg');
+	background-size: auto;
+	background-color: rgb(0, 128, 64);
+    background-position: center; /* Centre l'image à l'intérieur de la div */
+    background-repeat: no-repeat;
+    margin :auto; /* Centre la div horizontalement */
+	
+}
+}
+ 
