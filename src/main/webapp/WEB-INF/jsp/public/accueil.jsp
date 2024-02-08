@@ -26,7 +26,13 @@
 			
 				<form action="ServletTraitementReservation" method="GET">
 					<input type="hidden" name="id_restaurant" value='${current.id}' /> 
-					<input class="btnDetails" type="submit" value="Réserver" />
+					<c:if test="${sessionScope.client.nom ne null}">
+					<input class="btnDetails" type="submit" value="Plus d'informations / Réserver" />
+					</c:if>
+					<c:if test="${sessionScope.client.nom eq null}">
+					<input class="btnDetails" type="submit" value="Accéder aux informations du restaurant" />
+					</c:if>
+					
 				</form>
 				</div>
 		</c:forEach>

@@ -70,12 +70,11 @@ public class ServletMessagerie extends HttpServlet {
 			client.setId(clientId);
 			Restaurant restaurant = restaurantBll.selectById(restaurantId);
 			messageBll.insert(message, client, restaurant);
-			request.getRequestDispatcher("/WEB-INF/jsp/public/accueil.jsp").forward(request, response);
+			System.out.println("le message a bien été envoyé");
+			request.getRequestDispatcher("WEB-INF/jsp/private/validationMessage.jsp").forward(request, response);
 		} catch (BLLException e) {
 			e.printStackTrace();
-
-			request.getRequestDispatcher("/WEB-INF/jsp/private/messagerie.jsp").forward(request, response);// vers une
-																											// jsp
+			response.sendRedirect("messagerie");
 		}
 
 	}
