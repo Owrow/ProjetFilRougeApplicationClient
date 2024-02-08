@@ -7,19 +7,32 @@
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
 <link rel="stylesheet" href="css/navbar.css" />
+
 </head>
 <body>
-	<ul class="navbar">
-		<li><a href="accueil">Accueil</a></li>
-		<c:if test="${sessionScope.client.nom ne null}">
-		<li><a href="myAccount">Mon profil</a></li>
-		<li><a href="deconnexion">Se déconnecter</a>
-		</c:if>
-		<c:if test="${sessionScope.client.nom eq null}">
-		<li><a href="ServletInscription">S'inscrire</a></li>
-		<li><a href="ServletConnection">Se connecter</a></li>
-		</c:if>
-	</ul>
+<div class="head">
+<div class="divLogo" >
+    <img class="logo" src="assets/logo.png" alt="logo" height="50">
+ </div>
+ <div>
+    <ul class="navbar">
+        <li><a class="nav_accueil" href="index.jsp">Accueil</a></li>
+        <li><a class="nav_accueil" href="accueil">Nos restaurants</a></li>
+        <c:if test="${sessionScope.client.nom ne null}">
+            <li><a href="myAccount">Mon profil</a></li>
+            <div class="bouton_connexion">
+                <li><a href="deconnexion">Se déconnecter</a></li>
+            </div>
+        </c:if>
+        <c:if test="${sessionScope.client.nom eq null}">
+            <div class="bouton_connexion">
+                <li><a href="ServletInscription">S'inscrire</a></li>
+                <li><a href="ServletConnection">Se connecter</a></li>
+            </div>
+        </c:if>
+    </ul>
+</div>
+</div>
 
 </body>
 </html> 
