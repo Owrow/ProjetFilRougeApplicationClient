@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div><%@ include file="../../fragments/navbar.jspf"%></div>
 <h1> ${client.prenom } voulez-vous confirmer la suppression de votre profil ?</h1>
 
 <form action="deleteProfile" method="POST">

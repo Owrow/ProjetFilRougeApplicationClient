@@ -109,4 +109,14 @@
     <servlet-name>ServletDeconnexion</servlet-name>
     <url-pattern>/deconnexion</url-pattern>
   </servlet-mapping>
-</web-app>
+  <filter>
+    <display-name>FiltreConnexion</display-name>
+    <filter-name>FiltreConnexion</filter-name>
+    <filter-class>filter.FiltreConnexion</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>FiltreConnexion</filter-name>
+    <url-pattern>/jsp/private/*</url-pattern>
+    <dispatcher>FORWARD</dispatcher>
+  </filter-mapping>
+ </web-app>

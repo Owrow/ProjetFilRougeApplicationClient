@@ -17,7 +17,6 @@
 	<div>
 		<h3>Contactez nous !</h3>
 	</div>
-	<p>resturant ${restaurant.id }</p>
 	<div>
 		<form action="messagerie" method="POST">
 		<input type="hidden" name="restaurantId" value="${restaurant.id }" /> 

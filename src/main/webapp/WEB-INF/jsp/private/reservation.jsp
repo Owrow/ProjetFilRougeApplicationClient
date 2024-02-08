@@ -15,10 +15,9 @@
 
 
 	<div>
-		<p>Affichage des informations du restaurant</p>
-		<p>Nom: ${restaurant.nom}</p>
-		<p>Adresse: ${restaurant.adresse}</p>
-		<p>Horaires: ${restaurant.ouverture} : ${restaurant.fermeture}</p>
+		<p> ${restaurant.nom}</p>
+		<p>Adresse : ${restaurant.adresse}</p>
+		<p>Horaires : Tous les jours de ${restaurant.ouverture} à ${restaurant.fermeture}</p>
 
 		<p>Menu - ${carte.nom}</p>
 
@@ -39,8 +38,8 @@
 			</ul>
 		</c:forEach>
 	</div>
-
-	<h3>Réservation de Restaurant</h3>
+	<c:if test="${not empty sessionScope.client}">
+	<h3>Réservation</h3>
 
 	<form action="ServletTraitementReservation" method="post">
 
@@ -67,14 +66,23 @@
 			type="number" id="tailleGroupe" name="tailleGroupe" min="1" required>
 
 		<button type="submit">Réserver</button>
-		
-	
+
 	</form>
+	
+	<h3>Contact</h3>
 	<form action="messagerie" method="GET">
-	<input type="hidden" name="restaurantId" value="${ restaurant.id }">
-	<input  type="submit" value="Nous contacter !" />
+		<input type="hidden" name="restaurantId" value="${ restaurant.id }">
+		<input  type="submit" value="Nous contacter !" />
 	
 	</form>
+	</c:if>
+	
+	<c:if test="${sessionScope.client.nom eq null}">
+	<p>Pour réserver ou nous contacter veuillez vous connecter ou vous inscrire</p>
+	<a href="ServletInscription">S'inscrire</a>
+	<a href="ServletConnection">Se connecter</a>
+	</c:if>
+
 
 	<%-- <div>
 		<%@ include file="../../fragments/footer.jspf"%>
