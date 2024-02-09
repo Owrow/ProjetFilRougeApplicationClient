@@ -14,7 +14,7 @@
 
 
 <div id="ficheContact">
-		<form action="ServletInscription" method="GET">
+		<form action="ServletConnection" method="POST">
 			<div class="card-infos-client">
 				<h2>Veuillez vous connecter</h2>
 
