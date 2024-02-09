@@ -46,7 +46,7 @@ public class ServletDeleteProfile extends HttpServlet {
 		} catch (BLLException e) {
 			e.printStackTrace();
 		}
-		req.getRequestDispatcher("WEB-INF/jsp/public/accueil.jsp").forward(req, resp);
+		resp.sendRedirect("deconnexion");
 		
 	}
 

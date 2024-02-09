@@ -13,6 +13,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 
 public class ServletInscription extends HttpServlet {
@@ -59,7 +60,13 @@ public class ServletInscription extends HttpServlet {
 				//String hashedPassword = BCrypt.hashpw(confirPassSignIn, BCrypt.gensalt());
 				//clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, hashedPassword, 1);
 				clientBll.insert(nameSignIn, firstNameSignIn, telSignIn, mailSignIn, confirPassSignIn, 1);
-
+				
+				Client client = new Client();
+				client = clientBll.getHashPassword(mailSignIn);
+				HttpSession session = request.getSession();
+				session.setAttribute("client", client);
+				session.setMaxInactiveInterval(30 * 60);
+				
 				System.out.println("Client Ajouter");
 				response.sendRedirect("accueil");
 				return;
@@ -67,16 +74,16 @@ public class ServletInscription extends HttpServlet {
 			} catch (BLLException e) {
 				e.printStackTrace();
 			}
-				} else {
-			
-					System.out.println("Les mots de passe ne correspondent pas, renvoyez l'erreur à l'utilisateur"); 
-					
+		} else {
+
+			System.out.println("Les mots de passe ne correspondent pas, renvoyez l'erreur à l'utilisateur"); 
+
 		}
 
 
 		request.getRequestDispatcher("/WEB-INF/jsp/public/PageInscription.jsp").forward(request, response);
-	
-		
+
+
 	}
 
 
