@@ -20,7 +20,7 @@ public class ServletDeconnexion extends HttpServlet {
 		        session.invalidate();
 		    }
 
-		    response.sendRedirect("accueil");
+		    request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}
 
 }
