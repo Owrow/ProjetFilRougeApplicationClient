@@ -1,9 +1,6 @@
 @charset "UTF-8";
 
-img.pic-bandeau {
-	width: auto!important;
-	height: auto !important;
-}
+
 
 .card .card-img-top{
 	width: auto!important;
@@ -13,26 +10,32 @@ img.pic-bandeau {
  .card .btnDetails  {
 	display: inline-block !important;
     padding: 10px 20px!important;
-    border-radius: 20px!important; 
+    border-radius: 5px!important; 
     background-color: #FFF!important; 
     color: #E12008!important; 
     text-decoration: none !important; 
     border: 1px solid #e12008 !important;
     cursor: pointer!important;
     font-size: 14px !important;
-};
+   
+   
+}
 
-.titreRestos .local {
+.local {
 	font-size: 18px ;
-	text-align: center ;
-	background-color: red;
+	text-align: center!important;
+
+}
+
+.menu-card .card-text {
+	font-size: 20px !important;
 }
 
 
 @media screen and (min-width: 1024px) {
 	
-	.restoDetails .local {
-	font-size: 20px ;
-	text-align: center ;
+	.local {
+	font-size: 40px ;
+	
 	}
 	}

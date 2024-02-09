@@ -4,21 +4,21 @@
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<link rel="stylesheet" href="css/general.css" />
 <link rel="stylesheet" href="css/accueil.css" />
+<link rel="stylesheet" href="css/general.css" />
 </head>
 <body>
     <%@ include file="../../fragments/navbar.jspf"%>
-    <div class="bandeau">
-    <img class="pic-bandeau" alt="pic" src="/ProjetFilRougeClient/src/main/webapp/assets/bandeau-accueil.jpeg" />
-    </div>
+  <!--   <div class="bandeau">
+    <img class="pic-bandeau" alt="pic" src="assets/bandeau-accueil.jpeg" />
+    </div> -->
     <div class="titreRestos">
         <h1 class="local">Localisation & Horaires</h1>
     </div>
     <div class="container mt-4">
         <div class="row row-cols-1 row-cols-md-2">
-            <!-- Utilisez row-cols-md-2 pour afficher 2 cartes par ligne sur les écrans de bureau -->
-            <c:forEach var="current" items="${restaurants}">
+           
+            <c:forEach var="current" items="${restaurants}">             
                 <div class="col mb-4">
                     <!-- Supprimez la classe col-md-6 pour afficher une carte par colonne sur mobile -->
                     <div class="card">
