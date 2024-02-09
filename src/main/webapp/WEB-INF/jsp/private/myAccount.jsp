@@ -6,36 +6,53 @@
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
 <link rel="stylesheet" href="css/general.css" />
+<link rel="stylesheet" href="css/account.css" />
 </head>
 <body>
-<%@ include file="../../fragments/navbar.jspf"%>
+	<%@ include file="/../WEB-INF/fragments/navbar.jspf"%>
 
+<div class="card-infos-client">
 
 <h2>Bonjour ${client.prenom } ${client.nom } </h2>
 
 
 <div id="ficheContact">
 
-    <p>Nom : ${client.nom } </p>
-    <p>Prénom : ${client.prenom } </p>
-    <p>Mail : ${client.mail } </p>
-    <p>Téléphone : ${client.telephone }</p>
-  
+
+  <p>
+    <label for="nom">Nom :</label>
+    <a class="input"> ${client.nom }</a>
+	</p>
+	<p>
+    <label for="prenom">Prénom :</label>
+    <a class="input" >${client.prenom }</a>
+	</p>
+	<p>
+    <label for="mail">Mail :</label>
+    <a class="input" >${client.mail }</a>
+    </p>
+    <p>
+    <label for="telephone">Téléphone :</label>
+    <a class="input" >${client.telephone }</a>
+    </p>
 </div>
 
+
+</div>
+<div class="divForm">
 <form action="updateProfile" method="GET">
 	<input type="hidden" name="id" value="${client.id }" />
 	<input type="submit" value="Modifier mon profil" />
 </form>
 
 
-<form action="deleteProfile" method="GET">
+<form id="deleteForm" action="deleteProfile" method="POST">
 	<input type="hidden" name="id" value="${client.id }" />	
-     <input type="submit" value="Supprimer">
+     <input onclick="return afficherConfirmation()" type="submit" value="Supprimer">
 </form>
-
-
+</div>
 <%@ include file="../../fragments/footer.jspf"%>
+ <script src="${pageContext.request.contextPath}/js/confirmation.js"></script>
 
 </body>
 </html>
