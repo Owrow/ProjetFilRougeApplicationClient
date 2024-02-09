@@ -9,6 +9,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class ServletUpdateProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -70,6 +71,8 @@ public class ServletUpdateProfile extends HttpServlet {
 	        System.out.println("client à jour" + client );
 	        clientBll.update(client);
 	        System.out.println("client après update" + client );
+			HttpSession session = request.getSession();
+			session.setAttribute("client", client);
 	         request.getRequestDispatcher("/WEB-INF/jsp/private/updateProfile.jsp").forward(request, response);
 	    
 	    } catch (BLLException e) {

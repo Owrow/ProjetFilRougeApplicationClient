@@ -15,7 +15,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 
 	private static final String DELETE = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 	private static final String UPDATE = "UPDATE " + TABLE_NAME
-			+ " SET nom = ?, prenom = ?, telephone = ?, mail = ?,  WHERE id = ?";
+			+ " SET nom = ?, prenom = ?, telephone = ?, mail = ?  WHERE id = ?";
 	private static final String INSERT = "INSERT INTO " + TABLE_NAME + " (nom, prenom, telephone, mail, mdp, id_role) VALUES (?,?,?,?,?,?)";
 	private static final String SELECT_BY_ID = "SELECT c.id, c.nom, c.prenom, c.mail, c.telephone FROM "
 			+ TABLE_NAME + " c WHERE c.id = ?";
@@ -100,7 +100,6 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			}
 		} catch (SQLException e) {
 			throw new DALException("Impossible d'inserer les donnees du client", e);
-
 		}
 	}
 
@@ -116,6 +115,7 @@ public class ClientDAOjdbcImpl implements GenericDAO<Client> {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new DALException("Impossible de mettre à jour les informations du client", e);
 		}
 	}
