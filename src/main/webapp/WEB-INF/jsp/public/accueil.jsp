@@ -9,9 +9,9 @@
 </head>
 <body>
     <%@ include file="../../fragments/navbar.jspf"%>
-    <div class="bandeau">
+  <!--   <div class="bandeau">
     <img class="pic-bandeau" alt="pic" src="assets/bandeau-accueil.jpeg" />
-    </div>
+    </div> -->
     <div class="titreRestos">
         <h1 class="local">Localisation & Horaires</h1>
     </div>

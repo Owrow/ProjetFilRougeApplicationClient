@@ -6,14 +6,15 @@
 <meta charset="UTF-8">
 <title>PATE D'OR</title>
 <link rel="stylesheet" href="css/general.css" />
+<link rel="stylesheet" href="css/messagerie.css" />
 
 </head>
 <body>
 	<%@ include file="../../fragments/navbar.jspf"%>
-	<div>
+	<div class="container">
 		<h1>Bonjour ${client.prenom }</h1>
 		
-	</div>
+	
 	<div>
 		<h3>Contactez nous !</h3>
 	</div>
@@ -26,8 +27,7 @@
 			<input type="hidden" name="id" value="${client.id }" />
 			</form>
 	</div>
-	
-
+	</div>
 
 	<%@ include file="../../fragments/footer.jspf"%>
 </body>
