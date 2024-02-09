@@ -6,24 +6,35 @@
 <meta charset="UTF-8">
 <title>Connection</title>
 <link rel="stylesheet" href="css/general.css" />
+<link rel="stylesheet" href="css/connexion.css" />
 
 </head>
 <body>
 	<%@ include file="../../fragments/navbar.jspf"%>
 
-<form action="ServletConnection" method="post">
 
-<h1>Veuillez vous connecter</h1>
+<div id="ficheContact">
+		<form action="ServletInscription" method="GET">
+			<div class="card-infos-client">
+				<h2>Veuillez vous connecter</h2>
 
-<label>Mail :</label>
-<input type="email" name="email">
+				<p>
+					<label for="mail">Mail :</label> 
+					<input class="input" type="email" name="email" placeholder="exemple@exemple.fr" required><br>
+				</p>
 
-<label>Mot De Passe :</label>
-<input type="password" name="password">
+				<p>
+					<label for="password">Mot de passe :</label> 
+					<input class="input" type="password" name="password" required>
+				</p>
 
-<input type="submit" value="Valider" >
-
-</form>
+			</div>
+			<div class="boutonValidation">
+				<input class="validation" type="submit"
+					value="Se connecter">
+			</div>
+		</form>
+	</div>
 
 
 <%@ include file="../../fragments/footer.jspf"%>
