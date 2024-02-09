@@ -2,7 +2,7 @@
 
 .card-infos-client {
     width: 50%; /* Vous pouvez ajuster la largeur selon vos besoins */
-    height: 250px;
+    height: 200px;
     padding-top : 2%;
     margin-top: 50px;
     margin-left: auto;
@@ -18,6 +18,8 @@
 	-webkit-border-radius:5px;
 	border-radius:5px;
 }
+
+
 
 
 .card-infos-client h2{
