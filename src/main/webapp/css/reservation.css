@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+.reservation-form {
+    margin-top: 20px; 
+     border: 1px solid #e12008 !important;
+      border-radius: 5px!important; 
+}
+
+
+.card {
+    margin-bottom: 20px; 
+    width: 50%;
+}
+
+.menu-card {
+    background-color: #f8f9fa;  
+    padding: 10px; 
+}
+
+ .button-resa, .btn_contact, .divForm input{
+	display: inline-block !important;
+    padding: 10px 20px!important;
+    border-radius: 5px!important; 
+    background-color: #FFF!important; 
+    color: #E12008!important; 
+    text-decoration: none !important; 
+    border: 1px solid #e12008 !important;
+    cursor: pointer!important;
+    font-size: 14px !important;
+}
+.button-contact {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #FFF;
+    color: #E12008;
+    text-decoration: none;
+    border: 1px solid #e12008;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+
+.divForm {
+	display: inline-block !important;
+}
+
+form {
+    display: inline-block !important;
+}
+ 
+
+@media screen and (min-width: 1024px) {
+	
+	
+	}
