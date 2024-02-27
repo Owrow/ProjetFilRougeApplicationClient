@@ -10,19 +10,18 @@ import javax.sql.DataSource;
 
 public class ConnectionProvider {
 	
-	public static Connection getConnection() {
-		try {
-			Context context = new InitialContext();
-			DataSource dataSource = (DataSource) context.lookup("java:comp/env/" + System.getenv("CONTEXT_NAME"));
-		return dataSource.getConnection();
-		
-		} catch (NamingException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} return null;
-
-
-} 
+   
+    private static final String CONTEXT_NAME = "sevDriver";
+	
+    public static Connection getConnection() {
+        try {
+            Context context = new InitialContext();
+          
+            DataSource dataSource = (DataSource) context.lookup("java:comp/env/" + CONTEXT_NAME);
+            return dataSource.getConnection();
+        } catch (NamingException | SQLException e) {
+            e.printStackTrace();
+            return null; 
+        }
+    } 
 }
