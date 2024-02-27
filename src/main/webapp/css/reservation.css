@@ -1,57 +1,216 @@
 @charset "UTF-8";
 
-.reservation-form {
-    margin-top: 20px; 
-     border: 1px solid #e12008 !important;
-      border-radius: 5px!important; 
+.card {
+	display: flex;
+	width: 100%;
+	margin: 0 auto;
+	gap: 100px;
+	padding: 40px;
 }
 
+.card-img-top {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
 
-.card {
-    margin-bottom: 20px; 
-    width: 50%;
+.resa-top {
+	max-width: 70%;
+}
+
+.reservation-body {
+	margin: 0 auto;
+	border-radius: 5px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #F8F9FA;
+}
+
+.reservation-form {
+	flex-direction: column;
+	justify-content: space-between;
+	width: 75%;
+}
+
+.card-body-resto {
+	display: inline-block;
+	width: 40%;
+	margin: 0 auto;
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+
+.client-connexionState {
+	border: 1px solid grey;
+	border-radius: 5px;
+}
+
+.divForm input {
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 10px;
+	background-color: #e12008;
+	color: white;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	width: auto;
+	max-width: 150px;
+	height: auto;
+	max-height: 50px;
+	vertical-align: middle;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+h3 {
+	margin: 10px;
+}
+
+p {
+	font-size: 0.8rem;
+	margin: 10px;
+}
+
+.container-menu {
+	padding: 40px;
+	background-color: pink;
 }
 
 .menu-card {
-    background-color: #f8f9fa;  
-    padding: 10px; 
+    position: relative;
+    background-color: #f8f9fa;
+    
+    padding: 40px;
 }
 
- .button-resa, .btn_contact, .divForm input{
-	display: inline-block !important;
-    padding: 10px 20px!important;
-    border-radius: 5px!important; 
-    background-color: #FFF!important; 
-    color: #E12008!important; 
-    text-decoration: none !important; 
-    border: 1px solid #e12008 !important;
-    cursor: pointer!important;
-    font-size: 14px !important;
+.menu-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('assets/35613.jpeg');
+    background-size: cover;
+    opacity: 0.1; /* Réduire l'opacité pour atténuer l'effet */
+    pointer-events: none;
+    z-index: -1;
 }
-.button-contact {
+
+.card-body {
+    position: relative; /* Assurez-vous que le contenu du menu reste au premier plan */
+    z-index: 1;
+}
+
+.pasta-picture img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Redimensionner l'image pour qu'elle couvre entièrement la carte de menu */
+    opacity: 0.05; /* Réduire l'opacité pour atténuer l'effet */
+    pointer-events: none; /* Assurez-vous que l'image n'interfère pas avec les interactions utilisateur */
+    z-index: -1; /* Placez l'image en arrière-plan */
+}
+
+.btn-resa, btn-contact {
+	display: inline-block;
+	padding: 10px 20px;
+	border-radius: 10px;
+	background-color: rgb(0, 120, 80);
+	color: white;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	font-size: 14px;
+	width: auto;
+	max-width: 150px;
+	height: auto;
+	max-height: 50px;
+	vertical-align: middle;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.btn-resa:hover, .btn-contact:hover{
+	background-color: rgb(0, 117, 83);
+}
+
+.btn_connection:hover,.btn_register:hover{
+	background-color: rgb(200, 50, 30);
+}
+
+.form-label {
+	margin-bottom: 5px;
+}
+
+.form-control {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+}
+
+.form-select {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.contact-section {
+	margin-top: 20px;
+}
+
+.client-connexionState {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+
+.client-connexionState {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+}
+
+.client-connexionState p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.divForm {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.divForm form input[type="submit"] {
     display: inline-block;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: #FFF;
-    color: #E12008;
+    background-color: #E12008;
+    color: #fff;
     text-decoration: none;
-    border: 1px solid #e12008;
+    border: none;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
-
-
-.divForm {
-	display: inline-block !important;
+.divForm form input[type="submit"]:hover {
+    background-color: rgb(176, 20, 8);
 }
-
-form {
-    display: inline-block !important;
-}
- 
-
-@media screen and (min-width: 1024px) {
-	
-	
-	}
